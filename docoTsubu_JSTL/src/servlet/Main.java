@@ -63,8 +63,6 @@ public class Main extends HttpServlet {
 			ServletContext application = this.getServletContext();
 			List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
 			
-			System.out.println(mutterList);
-			
 			// セッションスコープからユーザー情報を取得
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
