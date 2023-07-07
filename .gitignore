@@ -40,7 +40,9 @@ tmp/
 hs_err_pid*
 replay_pid*
 
-# add by Seiichi
+# add by Seiichi	œŠO‚µ‚È‚¢
 *~
+!jstl-api-1.2.jar
+!jstl-impl-1.2.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse
