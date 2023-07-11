@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.EmployeeDAO;
 import model.Employee;
+import model.GetEmployeeListLogic;
 
 
 @WebServlet("/EmployeeServlet")
@@ -19,8 +19,9 @@ public class EmployeeServlet extends HttpServlet {
 
 //	EmployeeDAO	の findALL()を実行し、リクエストスコープに保存する
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EmployeeDAO empDAO = new EmployeeDAO();
-		List<Employee> empList = empDAO.findAll();
+		
+		GetEmployeeListLogic logic = new GetEmployeeListLogic();
+		List<Employee> empList = logic.execute();
 		
 		request.setAttribute("empList", empList);
 		

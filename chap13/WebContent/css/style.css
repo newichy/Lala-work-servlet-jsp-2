@@ -2,15 +2,17 @@
 
 body {
 	background-color: black;
-	color: azure;
+	color: #eee;
+	font-size: 15px;
 	padding: 20px 50px;
 }
 
 header {
 	background-color: aliceblue;
-	color: cadetblue;
+	color: #ccc;
 	padding: 10px;
 	font-size: 20px;
+	font-weight: bold;
 }
 
 footer {
