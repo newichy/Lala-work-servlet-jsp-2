@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Employee;
 import model.GetEmployeeListLogic;
 
-@WebServlet("/EmployeeServlet")
+@WebServlet("/list")
 public class EmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
