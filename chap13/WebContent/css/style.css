@@ -17,9 +17,9 @@ a {
 }
 
 header {
-	background-color: #eee;
-	color: rgb(55, 55, 55);
-	padding: 10px;
+	border-bottom: 1px solid #eee;
+	border-left: 15px solid red;
+	padding: 10px 20px;
 	margin-bottom: 20px;
 	font-size: 25px;
 	font-weight: bold;
@@ -37,7 +37,7 @@ main {
 }
 
 table {
-	border:1px solid #eee;
+	border: 1px solid #eee;
 	font-size: 20px;
 }
 
@@ -66,7 +66,7 @@ td {
 	border: none;
 }
 
-input{
+input {
 	padding: 3px;
 	font-size: 18px;
 	outline: none;
@@ -107,6 +107,10 @@ input:focus {
 	background-color: red;
 }
 
+.blue:hover {
+	background-color: mediumblue;
+}
+
 .table-footer-btn a {
 	color: #fff;
 }
@@ -116,7 +120,7 @@ input:focus {
 	font-size: 15px;
 	font-weight: bold;
 	padding: 5px;
-	margin:5px;
+	margin: 5px;
 	border-radius: 5px;
 }
 
@@ -126,8 +130,38 @@ input:focus {
 
 aside {
 	width: 200px;
-	display: grid;
+
 	place-items: center;
+}
+
+aside>div {
+	margin: 50px 0;
+}
+
+.aside-form {
+	display: flex;
+	border-bottom: 1px solid #eee;
+}
+
+.aside-form img {
+	height: 20px;
+}
+
+.aside-form img:hover {
+	height: 22px;	
+}
+
+aside input {
+	background-color: black;
+	color: #fff;
+	outline: none;
+	border: none;
+}
+
+aside input:focus {
+	font-size: 130%;
+	background-color: black;
+	color: #fff;
 }
 
 aside a {
@@ -136,11 +170,6 @@ aside a {
 	border: 1px solid #ccc;
 	padding: 5px 10px;
 	border-radius: 5px;
-}
-
-aside a:hover {
-	background-color:rgb(7, 128, 248);
-	color: black;
 }
 
 footer {

@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="util.Const" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Employee</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-</head>
+<%@ include file="./common/head.jsp" %>
 <body>
 	<%@ include file="./common/header.jsp"%>
 	<main>
@@ -30,13 +26,15 @@
 						<td class="table-tool">
 							<form action="${pageContext.request.contextPath}/update" method="post">
 								<input type="hidden" name="id" value="${emp.id}">
-								<input class="table-tool-txt" type="submit" value="編集">
+							<%-- <input class="table-tool-txt" type="submit" value="編集">	--%>
+								<button class="table-tool-txt" type="submit">${Const.IMG_PENCIL}</button>
 							</form>
 						</td>
 						<td class="table-tool">
 							<form action="${pageContext.request.contextPath}/delete" method="post">
 								<input type="hidden" name="id" value="${emp.id}">
-								<input class="table-tool-txt" type="submit" value="削除">
+							<%-- <input class="table-tool-txt" type="submit" value="削除">	--%>
+								<button class="table-tool-txt" type="submit">${Const.IMG_TRASH}</button>
 							</form>
 						</td>
 					</tr>

@@ -13,11 +13,15 @@ import model.Employee;
 public class EmployeeDAO {
 
 	// データベース接続に使う情報
+
+	//	H2データベース用
 	private final String JDBC_URL = "jdbc:h2:tcp://localhost/~/example";
+	//	MySQL用
+	//	private final String JDBC_URL = "jdbc:mysql://localhost:3306/example";
 	private final String DB_USER = "sa";
 	private final String DB_PASS = "";
 
-	// 結果取得メソッド
+	// 全件取得メソッド
 	public List<Employee> findAll() {
 		// Employeeオブジェクトを格納するempList（配列）
 		List<Employee> empList = new ArrayList<>();
@@ -25,7 +29,7 @@ public class EmployeeDAO {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 
 			// SQL文の準備
-			String sql = "SELECT id, name, age FROM employee";
+			String sql = "SELECT id, name, age FROM employee ORDER BY id ASC";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// 実行し結果表を取得
@@ -37,6 +41,39 @@ public class EmployeeDAO {
 				String name = rs.getString("NAME");
 				int age = rs.getInt("AGE");
 				Employee employee = new Employee(id, name, age);
+				empList.add(employee);
+			}
+		} catch (SQLException e) { // データベースに接続した時SQLエラーを取得
+			e.printStackTrace();
+			return null;
+		}
+		return empList;
+	}
+
+	// 名前検索メソッド	
+	public List<Employee> findAllByName(String name) {
+		List<Employee> empList = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SQL文の準備
+			String sql = "SELECT * FROM employee WHERE name LIKE ? ORDER BY id ASC";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// プレースホルダーを置換
+			pStmt.setString(1, "%" + name + "%");
+
+			System.out.println("DAO findEmployeeByName() by : " + name);
+
+			// 実行し結果表を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表からレコードごとに取り出し、empListに入れなおす
+			while (rs.next()) {
+				String id = rs.getString("ID");
+				String _name = rs.getString("NAME");
+				int age = rs.getInt("AGE");
+				Employee employee = new Employee(id, _name, age);
 				empList.add(employee);
 			}
 		} catch (SQLException e) { // データベースに接続した時SQLエラーを取得
@@ -147,22 +184,22 @@ public class EmployeeDAO {
 			return false;
 		}
 	}
-	
+
 	public boolean update(Employee emp) {
-		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER,DB_PASS)){
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			// INSERT文の準備実行
 			String sql = "UPDATE employee SET name=?, age=? WHERE id=?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			
+
 			pStmt.setString(1, emp.getName());
 			pStmt.setInt(2, emp.getAge());
 			pStmt.setString(3, emp.getId());
-			
+
 			int result = pStmt.executeUpdate();
-			
+
 			return (result == 1);
-		
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}

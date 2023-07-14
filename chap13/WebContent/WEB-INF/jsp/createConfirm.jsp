@@ -3,12 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Employee</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
-</head>
+<%@ include file="./common/head.jsp" %>
 <body>
 	<%@ include file="./common/header.jsp"%>
 	<main>
