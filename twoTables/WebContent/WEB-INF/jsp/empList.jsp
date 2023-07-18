@@ -13,9 +13,10 @@
 			<h1>社員一覧</h1>
 			<table>
 				<tr>
-					<th>ID</th>
+					<th>ＩＤ</th>
 					<th>名前</th>
 					<th>年齢</th>
+					<th>所属</th>
 					<th	class="table-tool"></th>
 					<th class="table-tool"></th>
 				</tr>
@@ -24,6 +25,7 @@
 						<td><c:out value="${emp.id}" /></td>
 						<td><c:out value="${emp.name}" /></td>
 						<td><c:out value="${emp.age}" /></td>
+						<td><c:out value="${emp.dept.name}" /></td>
 						<td class="table-tool">
 							<form action="${pageContext.request.contextPath}/update" method="post">
 								<input type="hidden" name="id" value="${emp.id}">

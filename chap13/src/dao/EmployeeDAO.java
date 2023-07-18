@@ -45,7 +45,8 @@ public class EmployeeDAO {
 			}
 		} catch (SQLException e) { // データベースに接続した時SQLエラーを取得
 			e.printStackTrace();
-			return null;
+			throw new IllegalStateException("データベースに接続できません");
+//			return null;
 		}
 		return empList;
 	}

@@ -1,0 +1,179 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: black;
+	color: #eee;
+	font-size: 15px;
+	padding: 20px 50px;
+}
+
+a {
+	text-decoration: none;
+	color: #ccc;
+}
+
+header {
+	border-bottom: 1px solid #eee;
+	border-left: 15px solid red;
+	padding: 10px 20px;
+	margin-bottom: 20px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+article {
+	border: 1px solid #eee;
+	padding: 20px;
+	margin: 10px;
+}
+
+main {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+table {
+	border: 1px solid #eee;
+	font-size: 20px;
+}
+
+th {
+	width: 200px;
+	border-bottom: 1px solid #ccc;
+}
+
+td {
+	text-align: center;
+}
+
+.table-tool {
+	width: 50px;
+}
+
+.table-tool:hover {
+	border: 1px solid #eee;
+}
+
+.table-tool-txt {
+	cursor: pointer;
+	font-size: 17px;
+	color: #fff;
+	background-color: black;
+	border: none;
+}
+
+input {
+	padding: 3px;
+	font-size: 18px;
+	outline: none;
+	background-color: #eee;
+}
+
+input:focus {
+	color: black;
+	background-color: #fff;
+}
+
+.confirm {
+	border: none;
+	background-color: black;
+	color: #fff;
+}
+
+.confirm:focus {
+	border-bottom: 2px solid #fff;
+}
+
+
+#table-footer {
+	margin-top: 20px;
+	text-align: right;
+}
+
+.table-footer-btn {
+	background-color: black;
+	cursor: pointer;
+}
+
+.table-footer-btn:hover {
+	background-color: #aaa;
+}
+
+.red:hover {
+	background-color: red;
+}
+
+.blue:hover {
+	background-color: mediumblue;
+}
+
+.table-footer-btn a {
+	color: #fff;
+}
+
+.table-footer-btn-txt {
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+}
+
+.div-result-bottom {
+	text-align: right;
+}
+
+aside {
+	width: 200px;
+
+	place-items: center;
+}
+
+aside>div {
+	margin: 50px 0;
+}
+
+.aside-form {
+	display: flex;
+	border-bottom: 1px solid #eee;
+}
+
+.aside-form img {
+	height: 20px;
+}
+
+.aside-form img:hover {
+	height: 22px;	
+}
+
+aside input {
+	background-color: black;
+	color: #fff;
+	outline: none;
+	border: none;
+}
+
+aside input:focus {
+	font-size: 130%;
+	background-color: black;
+	color: #fff;
+}
+
+aside a {
+	font-size: 20px;
+	color: #ccc;
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+footer {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
