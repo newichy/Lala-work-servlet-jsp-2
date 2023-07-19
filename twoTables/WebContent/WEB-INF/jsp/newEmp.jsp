@@ -8,7 +8,7 @@
 	<%@ include file="./common/header.jsp"%>
 	<main>
 		<article>
-			<h1>社員情報編集</h1>
+			<h1>新規社員登録</h1>
 			<c:if test="${not empty errmsgList}" >
 				<ul>
 					<c:forEach var="errmsg" items="${errmsgList}">
@@ -16,22 +16,28 @@
 					</c:forEach>
 				</ul>
 			</c:if>
-			<form method="post" action="${pageContext.request.contextPath}/updateConfirm">
+			<form method="post" action="${pageContext.request.contextPath}/new">
 				<table>
 					<tr>
 						<th>ID</th>
 						<th>名前</th>
 						<th>年齢</th>
+						<th>部署</th>
 					</tr>
 					<tr>
-						<td><c:out value="${ emp.id }" /></td>
-						<td><input type="text" name="name"  value='<c:out value="${ emp.name }" />'></td>
+						<td><input type="text" name="id" placeholder="EMP000" value='<c:out value="${emp.id}" />'></td>
+						<td><input type="text" name="name"  value='<c:out value="${emp.name}" />'></td>
 						<td><input type="text" name="age"  value='<c:out value="${ (_age != null ) ? _age : emp.age  }" />'></td>
+						<td><select name="dept_id">
+								<c:forEach var="dept" items="${deptList}">
+									<option value="${dept.id}">${dept.name}</option>
+								</c:forEach>
+							</select>
+						</td>
 					</tr>
 				</table>
-				<input type="hidden" name="id"  value='<c:out value="${ emp.id }" />'>
 				<div id="table-footer">
-					<input class="table-footer-btn table-footer-btn-txt" type="submit" value="変 更">
+					<input class="table-footer-btn table-footer-btn-txt" type="submit" value="登 録">
 					<button class="table-footer-btn table-footer-btn-txt">
 						<a href="${pageContext.request.contextPath}/list">取 消</a>
 					</button>

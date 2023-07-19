@@ -1,4 +1,4 @@
-package model;
+package model.dept;
 
 import java.io.Serializable;
 

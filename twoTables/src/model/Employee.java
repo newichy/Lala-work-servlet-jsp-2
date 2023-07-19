@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 
+import model.dept.Dept;
+
 public class Employee implements Serializable{
 	private String id;
 	private String name;

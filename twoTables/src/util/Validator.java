@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Employee;
+import model.IsAlreadyUsedIdLogic;
 
 public class Validator {
 	public List<String> check(Employee emp){
-//		IsAlreadyUsedIdLogic isLogic = new IsAlreadyUsedIdLogic();
+		IsAlreadyUsedIdLogic isLogic = new IsAlreadyUsedIdLogic();
 		List<String> errmsgList = new ArrayList<>();
 		
 			if(isEmpty(emp.getId())) {
 				errmsgList.add("IDが未入力です");
 			} else if (!emp.getId().matches("^EMP[0-9]{3}$")) {
 				errmsgList.add("IDの形式が不正です");	
-//			} else if ( isLogic.execute(emp.getId()) ) {
+			} else if ( isLogic.execute(emp.getId()) ) {
 				errmsgList.add("登録済みのIDです");
 			}
 			

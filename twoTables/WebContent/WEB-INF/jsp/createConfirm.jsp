@@ -15,11 +15,18 @@
 						<th>ID</th>
 						<th>名前</th>
 						<th>年齢</th>
+						<th>部署</th>
 					</tr>
 					<tr>
 						<td><input class="confirm" type="text" name="id" value="<c:out value="${ emp.id }" />"></td>
 						<td><input class="confirm" type="text" name="name"  value="<c:out value="${ emp.name }" />"></td>
 						<td><input class="confirm" type="text" name="age"  value="<c:out value="${ emp.age }" />"></td>
+						<td><div class="confirm" name="dept_id">
+								<c:forEach var="dept" items="${deptList}">
+									<c:out value="${dept.id == emp.dept.id ? dept.name : '' }" />
+								</c:forEach>
+							</div>
+						</td>
 					</tr>
 				</table>
 				<div id="table-footer">
