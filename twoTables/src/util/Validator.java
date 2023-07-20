@@ -5,6 +5,8 @@ import java.util.List;
 
 import model.Employee;
 import model.IsAlreadyUsedIdLogic;
+import model.dept.Dept;
+import model.dept.IsAlreadyUsedDeptIdLogic;
 
 public class Validator {
 	public List<String> check(Employee emp){
@@ -30,6 +32,26 @@ public class Validator {
 			} else if(emp.getAge() < 0) {
 				errmsgList.add("年齢の形式が不正です");
 			}		
+		return errmsgList;
+	}
+	
+	public List<String> check(Dept dept){
+		IsAlreadyUsedDeptIdLogic isLogic = new IsAlreadyUsedDeptIdLogic();
+		List<String> errmsgList = new ArrayList<>();
+		
+			if(isEmpty(dept.getId())) {
+				errmsgList.add("部署IDが未入力です");
+			} else if (!dept.getId().matches("^D[0-9]{2}$")) {
+				errmsgList.add("部署IDの形式が不正です");	
+			} else if ( isLogic.execute(dept.getId()) ) {
+				errmsgList.add("登録済みの部署IDです");
+			}
+			
+			if(isEmpty(dept.getName())) {
+				errmsgList.add("部署名が未入力です");
+			} else if (dept.getName().length() > 30) {
+				errmsgList.add("部署名は30文字以内で入力してください");
+			}
 		return errmsgList;
 	}
 	

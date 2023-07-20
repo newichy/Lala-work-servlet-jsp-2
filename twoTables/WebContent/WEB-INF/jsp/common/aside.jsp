@@ -9,10 +9,15 @@
 	</div>
 	
 	<div>
-		<a href="${pageContext.request.contextPath}/list" class="blue">全件表示</a>
+		<a href="${pageContext.request.contextPath}/list" class="blue">社員一覧表示</a>
 	</div>
-	
 	<div>
-		<a href="${pageContext.request.contextPath}/new" class="blue">新規登録</a>
+		<a href="${pageContext.request.contextPath}/deptList" class="blue">部署一覧表示</a>
+	</div>
+	<div>
+		<a href="${pageContext.request.contextPath}/new" class="red">新規社員登録</a>
+	</div>
+		<div>
+		<a href="${pageContext.request.contextPath}/newDept" class="red">新規部署登録</a>
 	</div>
 </aside>

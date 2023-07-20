@@ -77,4 +77,52 @@ public class DeptDAO {
 		}
 		return dept;
 	}
+	
+	public boolean isAlreadyUsedId(String id) {
+
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SQL文の準備
+			String sql = "SELECT id FROM dept WHERE id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// プレースホルダーを置換
+			pStmt.setString(1, id);
+
+			// 実行し結果表を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果があればtrue
+			if (rs.next()) {
+				System.out.println("DeptDAO isAlreadyUsedId() by id: " + id + " result:true");
+				return true;
+			}
+
+		} catch (SQLException e) { // データベースに接続した時SQLエラーを取得
+			e.printStackTrace();
+			System.out.println("DeptDAO isAlreadyUsedId() by id: " + id + " result:false");
+			return false;
+		}
+		return false;
+	}
+	
+	// 新規レコード
+		public boolean insert(Dept dept) {
+			try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+				// INSERT文の準備実行
+				String sql = "INSERT INTO dept VALUES(?,?)";
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+
+				pStmt.setString(1, dept.getId());
+				pStmt.setString(2, dept.getName());
+
+				int result = pStmt.executeUpdate();
+
+				return (result == 1);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
 }

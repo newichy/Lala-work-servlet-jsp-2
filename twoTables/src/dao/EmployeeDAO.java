@@ -27,6 +27,17 @@ public class EmployeeDAO {
 			+ " JOIN dept d "
 			+ "	ON e.dept_id = d.id "
 			+ " ORDER BY e.id;";
+	
+	private final String SQL_FIND_BY_ID = "SELECT "
+			+ "	e.id AS id, "
+			+ "	e.name AS name, "
+			+ "	e.age AS age, "
+			+ "	e.dept_id AS dept_id, "
+			+ "	d.name AS dept_name "
+			+ " FROM employee e "
+			+ " JOIN dept d "
+			+ "	ON e.dept_id = d.id "
+			+ " WHERE e.id = ?";
 
 	// 全件取得メソッド
 	public List<Employee> findAll() {
@@ -89,17 +100,74 @@ public class EmployeeDAO {
 		return false;
 	}
 
+	// 一件取得メソッド
+	public Employee findEmployeeById(String id) {
+		Employee employee = null;
+
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+
+			// SQL文の準備
+			String sql = SQL_FIND_BY_ID;
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// プレースホルダーを置換
+			pStmt.setString(1, id);
+
+			System.out.println("DAO findEmployeeById() by id: " + id);
+
+			// 実行し結果表を取得
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表からレコードごとに取り出し、empListに入れなおす
+			if (rs.next()) {
+				String name = rs.getString("NAME");
+				int age = rs.getInt("AGE");
+				String dept_id = rs.getString("DEPT_ID");
+				String dept_name = rs.getString("DEPT_NAME");
+				Dept dept = new Dept(dept_id, dept_name);
+				employee = new Employee(id, name, age, dept);
+			}
+
+		} catch (SQLException e) { // データベースに接続した時SQLエラーを取得
+			e.printStackTrace();
+			return null;
+		}
+		return employee;
+	}
+
 	// 新規レコード
 	public boolean insert(Employee emp) {
 		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
 			// INSERT文の準備実行
-			String sql = "INSERT id, name, age, dept INTO employee VALUES(?,?,?,?)";
+			String sql = "INSERT INTO employee VALUES(?,?,?,?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			pStmt.setString(1, emp.getId());
 			pStmt.setString(2, emp.getName());
 			pStmt.setInt(3, emp.getAge());
 			pStmt.setString(4, emp.getDept().getId());
+
+			int result = pStmt.executeUpdate();
+
+			return (result == 1);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	// 更新
+	public boolean update(Employee emp) {
+		try (Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS)) {
+			// INSERT文の準備実行
+			String sql = "UPDATE employee SET name=?, age=?, dept_id=? WHERE id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			pStmt.setString(1, emp.getName());
+			pStmt.setInt(2, emp.getAge());
+			pStmt.setString(3, emp.getDept().getId());
+			pStmt.setString(4, emp.getId());
 
 			int result = pStmt.executeUpdate();
 
