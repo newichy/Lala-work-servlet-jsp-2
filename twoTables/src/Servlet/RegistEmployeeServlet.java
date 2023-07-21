@@ -31,10 +31,11 @@ public class RegistEmployeeServlet extends HttpServlet {
 		
 		
 		PostEmployeeLogic pel = new PostEmployeeLogic();
-		pel.execute(emp);
-		
-		request.setAttribute("msg", "登録しました。");
-		
+		if(pel.execute(emp)) {
+			request.setAttribute("msg", "登録しました。");
+		} else {
+			request.setAttribute("msg", "登録に失敗しました。。");
+		}
 		String url ="/WEB-INF/jsp/result.jsp";
 		request.getRequestDispatcher(url).forward(request, response);
 	}

@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+body, h1, h2, h3, p, ul {
+	margin: 0;
+}
+
+ul {
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #444;
+}
+a:hover {
+	color: #888;
+}
+
+header {
+	padding: 10px 0;
+	border-bottom: solid 1px #aaa;
+	box-shadow: 0 1px 3px #aaa;
+	margin-bottom: 20px;
+	background-color: #444;
+	color: #fff;
+}
+
+header h1 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+header h1 a {
+	color: #fff;
+}
+
+header h1 a:hover {
+	color: #fff;
+}
+
+.main {
+	width: 600px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	display: flex;
+}
+
+footer {
+	padding: 10px 0;
+	background-color: #444;
+	color: #fff;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+article {
+	width: 70%;
+	margin-bottom: 50px;
+}
+
+table {
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+th, td {
+	border: solid 1px #aaa;
+	padding: 5px 8px;
+}
+
+th {
+	text-align: left;
+}
+
+/* inputタグ */
+.no-border {
+	border: none;
+	outline: none;
+}
+
+/* 画像button */
+.no-btn {
+	border: none;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+/* aside 検索 */
+.find-box {
+	display: flex;
+	border: solid 1px #aaa;
+	justify-content: space-between;
+}
+
+.find-box img {
+	height: 25px;
+	vertical-align: middle;
+}
+
+/*
+ * 確認画面
+ */
+.confirm table,
+.confirm th,
+.confirm td {
+	border: none;
+}
+

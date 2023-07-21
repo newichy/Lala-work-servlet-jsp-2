@@ -31,7 +31,19 @@ public class Validator {
 				errmsgList.add("年齢が未入力です");
 			} else if(emp.getAge() < 0) {
 				errmsgList.add("年齢の形式が不正です");
-			}		
+			}
+			
+			if(isEmpty(emp.getDept().getName())) {
+				errmsgList.add("部署名が未入力です");
+			} else if (!emp.getDept().getId().matches("^D[0-9]{2}$")) {
+				errmsgList.add("部署IDの形式が不正です");	
+			}
+			IsAlreadyUsedDeptIdLogic deptLogic = new IsAlreadyUsedDeptIdLogic();
+			if (!deptLogic.execute(emp.getDept().getId())) {
+				errmsgList.add("その部署は存在していません。");
+			}
+			
+			
 		return errmsgList;
 	}
 	
